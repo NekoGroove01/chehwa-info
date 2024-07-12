@@ -71,6 +71,8 @@
             <button
               hx-get="./ko.html"
               hx-target="#content"
+              hx-swap="innerHTML transition:true"
+              hx-trigger="click"
               class="bg-gray-200 px-3 py-1 rounded mr-2 hover:bg-blue-400 tracking-normal"
             >
               KO
@@ -78,6 +80,8 @@
             <button
               hx-get="./en.html"
               hx-target="#content"
+              hx-swap="innerHTML transition:true"
+              hx-trigger="click"
               class="bg-gray-200 px-3 py-1 rounded hover:bg-blue-400 tracking-normal"
             >
               EN
@@ -131,6 +135,8 @@
           <button
             hx-get="./ko.html"
             hx-target="#content"
+            hx-swap="innerHTML transition:true"
+            hx-trigger="click"
             class="bg-gray-200 px-3 py-1 rounded hover:bg-blue-400 tracking-normal"
           >
             KO
@@ -138,6 +144,8 @@
           <button
             hx-get="./en.html"
             hx-target="#content"
+            hx-swap="innerHTML transition:true"
+            hx-trigger="click"
             class="bg-gray-200 px-3 py-1 rounded hover:bg-blue-400 tracking-normal"
           >
             EN
@@ -155,26 +163,45 @@
     </footer>
 
     <script>
-      let forgettingCurveChart; // 전역 변수로 차트 객체 선언
+      let forgettingCurveChart;
 
       document.addEventListener("DOMContentLoaded", function () {
-        const mobileMenuButton = document.getElementById("mobile-menu-button");
-        const mobileMenu = document.getElementById("mobile-menu");
-
-        mobileMenuButton.addEventListener("click", function () {
-          mobileMenu.classList.toggle("hidden");
+        // 초기 로드
+        htmx.ajax("GET", "./ko.html", "#content").then(function () {
+          createOrUpdateChart();
         });
       });
 
-      document.addEventListener("DOMContentLoaded", function () {
-        htmx.ajax("GET", "./ko.html", "#content").then(function (response) {
-          createGraph();
-          adjustCanvasHeight();
-        });
+      // HTMX 이벤트 리스너 추가
+      document.body.addEventListener("htmx:afterSwap", function (event) {
+        if (event.detail.target.id === "content") {
+          // chart-container가 교체되지 않았는지 확인
+          const chartContainer = document.getElementById("chart-container");
+          if (!chartContainer) {
+            // chart-container가 없으면 다시 추가
+            const aboutSection = document.getElementById("about");
+            if (aboutSection) {
+              const chartDiv = document.createElement("div");
+              chartDiv.id = "chart-container";
+              chartDiv.className =
+                "w-full h-96 flex justify-center items-center";
+              chartDiv.innerHTML =
+                '<canvas id="forgettingCurve" class="w-full"></canvas>';
+              aboutSection.querySelector(".grid").appendChild(chartDiv);
+            }
+          }
+          createOrUpdateChart();
+        }
       });
 
-      function createGraph() {
-        const ctx = document.getElementById("forgettingCurve").getContext("2d");
+      function createOrUpdateChart() {
+        const canvas = document.getElementById("forgettingCurve");
+        if (!canvas) {
+          console.error("Canvas element not found");
+          return;
+        }
+
+        const ctx = canvas.getContext("2d");
 
         // 데이터 생성 함수
         function generateCurve(startPoint, endPoint, points) {
@@ -196,67 +223,77 @@
         const review2 = generateCurve(90, 60, 60);
         const review3 = generateCurve(95, 75, 40);
 
-        forgettingCurveChart = new Chart(ctx, {
-          type: "line",
-          data: {
-            datasets: [
-              {
-                label: "초기 학습",
-                data: initialCurve,
-                fill: false,
+        const chartData = {
+          datasets: [
+            {
+              label: "초기 학습",
+              data: initialCurve,
+              fill: false,
+            },
+            {
+              label: "1차 복습",
+              data: review1,
+              fill: false,
+            },
+            {
+              label: "2차 복습",
+              data: review2,
+              fill: false,
+            },
+            {
+              label: "3차 복습",
+              data: review3,
+              fill: false,
+            },
+          ],
+        };
+
+        const chartOptions = {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            title: {
+              display: true,
+              text: "에빙하우스 망각 곡선과 간격 반복 학습",
+              font: {
+                size: 20,
               },
-              {
-                label: "1차 복습",
-                data: review1,
-                fill: false,
-              },
-              {
-                label: "2차 복습",
-                data: review2,
-                fill: false,
-              },
-              {
-                label: "3차 복습",
-                data: review3,
-                fill: false,
-              },
-            ],
+            },
+            legend: {
+              position: "top",
+            },
           },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
+          scales: {
+            x: {
+              type: "linear",
+              position: "bottom",
               title: {
                 display: true,
-                text: "에빙하우스 망각 곡선과 간격 반복 학습",
-                font: {
-                  size: 20,
-                },
-              },
-              legend: {
-                position: "top",
+                text: "시간",
               },
             },
-            scales: {
-              x: {
-                type: "linear",
-                position: "bottom",
-                title: {
-                  display: true,
-                  text: "시간",
-                },
+            y: {
+              title: {
+                display: true,
+                text: "기억 유지율 (%)",
               },
-              y: {
-                title: {
-                  display: true,
-                  text: "기억 유지율 (%)",
-                },
-                min: 0,
-                max: 100,
-              },
+              min: 0,
+              max: 100,
             },
           },
+        };
+
+        if (forgettingCurveChart) {
+          forgettingCurveChart.destroy(); // 기존 차트 제거
+        }
+
+        forgettingCurveChart = new Chart(ctx, {
+          type: "line",
+          data: chartData,
+          options: chartOptions,
         });
+
+        adjustCanvasHeight();
       }
 
       // Debounce 함수
@@ -302,8 +339,6 @@
         canvas.setAttribute("height", newHeight * window.devicePixelRatio);
         canvas.setAttribute("width", containerWidth * window.devicePixelRatio);
         canvas.style.width = `${containerWidth}px`;
-
-        console.log("Canvas resized:", canvas.width, canvas.height);
 
         // 차트 다시 그리기
         if (forgettingCurveChart) {
