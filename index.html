@@ -17,9 +17,6 @@
         letter-spacing: -1.5px;
         scrollbar-width: smooth;
       }
-      #home {
-        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      }
       .bold {
         font-weight: 500;
       }
@@ -39,7 +36,9 @@
     </style>
   </head>
   <body class="bg-gray-100">
-    <nav class="bg-white shadow-md fixed w-full py-2 z-10">
+    <nav
+      class="transition-all duration-500 bg-white shadow-md fixed w-full py-2 z-10"
+    >
       <div
         class="container mx-auto px-6 py-1 flex justify-between items-center"
       >
@@ -49,22 +48,22 @@
         <div class="hidden md:flex items-center space-x-6">
           <a
             href="#home"
-            class="hover:text-orange-500 nav-font text-xl tracking-wider"
+            class="transition-all hover:text-purple-500 nav-font text-xl tracking-wider"
             >Home</a
           >
           <a
             href="#about"
-            class="hover:text-orange-500 nav-font text-xl tracking-wider"
+            class="transition-all hover:text-purple-500 nav-font text-xl tracking-wider"
             >About</a
           >
           <a
             href="#features"
-            class="hover:text-orange-500 nav-font text-xl tracking-wider"
+            class="transition-all hover:text-purple-500 nav-font text-xl tracking-wider"
             >Features</a
           >
           <a
             href="#contact"
-            class="hover:text-orange-500 nav-font text-xl tracking-wider"
+            class="transition-all hover:text-purple-500 nav-font text-xl tracking-wider"
             >Contact</a
           >
           <div>
@@ -73,7 +72,7 @@
               hx-target="#content"
               hx-swap="innerHTML transition:true"
               hx-trigger="click"
-              class="bg-gray-200 px-3 py-1 rounded mr-2 hover:bg-blue-400 tracking-normal"
+              class="transition-all bg-gray-200 px-3 py-1 rounded mr-2 hover:bg-blue-400 tracking-normal"
             >
               KO
             </button>
@@ -82,7 +81,7 @@
               hx-target="#content"
               hx-swap="innerHTML transition:true"
               hx-trigger="click"
-              class="bg-gray-200 px-3 py-1 rounded hover:bg-blue-400 tracking-normal"
+              class="transition-all bg-gray-200 px-3 py-1 rounded hover:bg-blue-400 tracking-normal"
             >
               EN
             </button>
@@ -113,22 +112,22 @@
       <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
         <a
           href="#home"
-          class="block mt-2 py-4 px-4 text-lg hover:bg-gray-200 tracking-wider"
+          class="transition-all block mt-2 py-4 px-4 text-lg hover:bg-gray-200 tracking-wider"
           >Home</a
         >
         <a
           href="#home"
-          class="block mt-2 py-4 px-4 text-lg hover:bg-gray-200 tracking-wider"
+          class="transition-all block mt-2 py-4 px-4 text-lg hover:bg-gray-200 tracking-wider"
           >About</a
         >
         <a
           href="#features"
-          class="block py-4 px-4 text-lg hover:bg-gray-200 tracking-wider"
+          class="transition-all block py-4 px-4 text-lg hover:bg-gray-200 tracking-wider"
           >Features</a
         >
         <a
           href="#contact"
-          class="block py-4 px-4 text-lg hover:bg-gray-200 tracking-wider"
+          class="transition-all block py-4 px-4 text-lg hover:bg-gray-200 tracking-wider"
           >Contact</a
         >
         <div class="flex justify-start px-4 py-2 space-x-2">
@@ -137,7 +136,7 @@
             hx-target="#content"
             hx-swap="innerHTML transition:true"
             hx-trigger="click"
-            class="bg-gray-200 px-3 py-1 rounded hover:bg-blue-400 tracking-normal"
+            class="transition-all bg-gray-200 px-3 py-1 rounded hover:bg-blue-400 tracking-normal"
           >
             KO
           </button>
@@ -146,7 +145,7 @@
             hx-target="#content"
             hx-swap="innerHTML transition:true"
             hx-trigger="click"
-            class="bg-gray-200 px-3 py-1 rounded hover:bg-blue-400 tracking-normal"
+            class="transition-all bg-gray-200 px-3 py-1 rounded hover:bg-blue-400 tracking-normal"
           >
             EN
           </button>
@@ -163,6 +162,21 @@
     </footer>
 
     <script>
+      window.addEventListener("scroll", function () {
+        const scrollPosition =
+          window.pageYOffset || document.documentElement.scrollTop;
+        const nav = document.querySelector("nav");
+        if (scrollPosition === 0) {
+          nav.classList.remove("bg-white");
+          nav.classList.add("bg-white/[0.3]");
+          nav.classList.remove("shadow-md");
+        } else {
+          nav.classList.remove("bg-white/[0.3]");
+          nav.classList.add("bg-white");
+          nav.classList.add("shadow-md");
+        }
+      });
+
       let forgettingCurveChart;
 
       document.addEventListener("DOMContentLoaded", function () {
