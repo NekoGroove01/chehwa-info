@@ -3,44 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>체화 - 스마트 회독 단어장</title>
+    <title>체화 | 스마트 회독 단어장</title>
     <script src="https://unpkg.com/htmx.org@2.0.0"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-      @font-face {
-        font-family: "Pretendard";
-        font-weight: 600;
-        font-display: swap;
-        src: local("Pretendard SemiBold"),
-          url(./fonts/Pretendard-SemiBold.woff2) format("woff2");
-      }
-      @font-face {
-        font-family: "Pretendard";
-        font-weight: 400;
-        font-display: swap;
-        src: local("Pretendard Regular"),
-          url(./fonts/Pretendard-Regular.woff2) format("woff2");
-      }
-      @font-face {
-        font-family: "Pretendard";
-        font-weight: 200;
-        font-display: swap;
-        src: local("Pretendard ExtraLight"),
-          url(./fonts/Pretendard-ExtraLight.woff2) format("woff2");
-      }
       body {
-        font-family: "Pretendard", sans-serif;
-        font-weight: 200;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        letter-spacing: -1.5px;
         scrollbar-width: smooth;
       }
       #home {
-        background-image: linear-gradient(
-          to right,
-          #f78ca0 0%,
-          #f9748f 19%,
-          #fd868c 60%,
-          #fe9a8b 100%
-        );
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      .bold {
+        font-weight: 500;
+      }
+      .nav-font {
+        font-family: Poppins, sans-serif;
+      }
+      @media screen and (min-width: 1024px) {
+        body {
+          font-size: 16px;
+        }
       }
       @media screen and (min-width: 1920px) {
         body {
@@ -50,30 +39,46 @@
     </style>
   </head>
   <body class="bg-gray-100">
-    <nav class="bg-white shadow-md fixed w-full py-4 z-10">
+    <nav class="bg-white shadow-md fixed w-full py-2 z-10">
       <div
         class="container mx-auto px-6 py-1 flex justify-between items-center"
       >
         <div class="flex items-center">
-          <img src="images/icon.png" alt="체화 Icon" class="h-12 mr-4" />
-          <span class="text-2xl font-normal hidden md:inline-block">체화</span>
+          <img src="images/icon.png" alt="체화 Icon" class="h-16" />
         </div>
         <div class="hidden md:flex items-center space-x-6">
-          <a href="#home" class="hover:text-orange-500">Home</a>
-          <a href="#features" class="hover:text-orange-500">Features</a>
-          <a href="#contact" class="hover:text-orange-500">Contact</a>
+          <a
+            href="#home"
+            class="hover:text-orange-500 nav-font text-xl tracking-wider"
+            >Home</a
+          >
+          <a
+            href="#about"
+            class="hover:text-orange-500 nav-font text-xl tracking-wider"
+            >About</a
+          >
+          <a
+            href="#features"
+            class="hover:text-orange-500 nav-font text-xl tracking-wider"
+            >Features</a
+          >
+          <a
+            href="#contact"
+            class="hover:text-orange-500 nav-font text-xl tracking-wider"
+            >Contact</a
+          >
           <div>
             <button
               hx-get="./ko.html"
               hx-target="#content"
-              class="bg-gray-200 px-3 py-1 rounded mr-2 hover:bg-blue-400"
+              class="bg-gray-200 px-3 py-1 rounded mr-2 hover:bg-blue-400 tracking-normal"
             >
               KO
             </button>
             <button
               hx-get="./en.html"
               hx-target="#content"
-              class="bg-gray-200 px-3 py-1 rounded hover:bg-blue-400"
+              class="bg-gray-200 px-3 py-1 rounded hover:bg-blue-400 tracking-normal"
             >
               EN
             </button>
@@ -102,27 +107,38 @@
         </div>
       </div>
       <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
-        <a href="#home" class="block mt-2 py-4 px-4 text-sm hover:bg-gray-200"
+        <a
+          href="#home"
+          class="block mt-2 py-4 px-4 text-lg hover:bg-gray-200 tracking-wider"
           >Home</a
         >
-        <a href="#features" class="block py-4 px-4 text-sm hover:bg-gray-200"
+        <a
+          href="#home"
+          class="block mt-2 py-4 px-4 text-lg hover:bg-gray-200 tracking-wider"
+          >About</a
+        >
+        <a
+          href="#features"
+          class="block py-4 px-4 text-lg hover:bg-gray-200 tracking-wider"
           >Features</a
         >
-        <a href="#contact" class="block py-4 px-4 text-sm hover:bg-gray-200"
+        <a
+          href="#contact"
+          class="block py-4 px-4 text-lg hover:bg-gray-200 tracking-wider"
           >Contact</a
         >
         <div class="flex justify-start px-4 py-2 space-x-2">
           <button
             hx-get="./ko.html"
             hx-target="#content"
-            class="bg-gray-200 px-3 py-1 rounded hover:bg-blue-400"
+            class="bg-gray-200 px-3 py-1 rounded hover:bg-blue-400 tracking-normal"
           >
             KO
           </button>
           <button
             hx-get="./en.html"
             hx-target="#content"
-            class="bg-gray-200 px-3 py-1 rounded hover:bg-blue-400"
+            class="bg-gray-200 px-3 py-1 rounded hover:bg-blue-400 tracking-normal"
           >
             EN
           </button>
@@ -133,12 +149,14 @@
     <div id="content"></div>
 
     <footer class="bg-gray-800 text-white py-8">
-      <div class="container mx-auto px-6 text-center">
+      <div class="container mx-auto px-6 text-lg text-center tracking-wide">
         <p>&copy; 2024 체화. All rights reserved.</p>
       </div>
     </footer>
 
     <script>
+      let forgettingCurveChart; // 전역 변수로 차트 객체 선언
+
       document.addEventListener("DOMContentLoaded", function () {
         const mobileMenuButton = document.getElementById("mobile-menu-button");
         const mobileMenu = document.getElementById("mobile-menu");
@@ -149,8 +167,155 @@
       });
 
       document.addEventListener("DOMContentLoaded", function () {
-        htmx.ajax("GET", "./ko.html", "#content");
+        htmx.ajax("GET", "./ko.html", "#content").then(function (response) {
+          createGraph();
+          adjustCanvasHeight();
+        });
       });
+
+      function createGraph() {
+        const ctx = document.getElementById("forgettingCurve").getContext("2d");
+
+        // 데이터 생성 함수
+        function generateCurve(startPoint, endPoint, points) {
+          const data = [];
+          for (let i = 0; i < points; i++) {
+            const x = i / (points - 1);
+            const y =
+              startPoint + (endPoint - startPoint) * (1 - Math.exp(-5 * x));
+            data.push({ x: i, y: y });
+          }
+          return data;
+        }
+
+        // 초기 학습 곡선
+        const initialCurve = generateCurve(100, 20, 100);
+
+        // 복습 곡선들
+        const review1 = generateCurve(80, 40, 80);
+        const review2 = generateCurve(90, 60, 60);
+        const review3 = generateCurve(95, 75, 40);
+
+        forgettingCurveChart = new Chart(ctx, {
+          type: "line",
+          data: {
+            datasets: [
+              {
+                label: "초기 학습",
+                data: initialCurve,
+                fill: false,
+              },
+              {
+                label: "1차 복습",
+                data: review1,
+                fill: false,
+              },
+              {
+                label: "2차 복습",
+                data: review2,
+                fill: false,
+              },
+              {
+                label: "3차 복습",
+                data: review3,
+                fill: false,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              title: {
+                display: true,
+                text: "에빙하우스 망각 곡선과 간격 반복 학습",
+                font: {
+                  size: 20,
+                },
+              },
+              legend: {
+                position: "top",
+              },
+            },
+            scales: {
+              x: {
+                type: "linear",
+                position: "bottom",
+                title: {
+                  display: true,
+                  text: "시간",
+                },
+              },
+              y: {
+                title: {
+                  display: true,
+                  text: "기억 유지율 (%)",
+                },
+                min: 0,
+                max: 100,
+              },
+            },
+          },
+        });
+      }
+
+      // Debounce 함수
+      function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+          const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+          };
+          clearTimeout(timeout);
+          timeout = setTimeout(later, wait);
+        };
+      }
+
+      function adjustCanvasHeight() {
+        const canvas = document.getElementById("forgettingCurve");
+        if (!canvas) {
+          console.error("Canvas element not found");
+          return;
+        }
+        const container = canvas.parentElement;
+        const containerWidth = container.offsetWidth;
+
+        // 모바일 환경에서의 최소 높이 설정 (예: 300px)
+        const minHeight = 300;
+
+        // 화면 너비에 따른 높이 비율 설정
+        let heightRatio;
+        if (window.innerWidth < 768) {
+          // 모바일 환경
+          heightRatio = 0.75; // 높이를 너비의 125%로 설정
+        } else {
+          // 태블릿 이상의 환경
+          heightRatio = 0.6; // 높이를 너비의 60%로 설정
+        }
+
+        // 새로운 높이 계산 (최소 높이 제한 적용)
+        const newHeight = Math.max(containerWidth * heightRatio, minHeight);
+
+        // Canvas 크기 조정
+        canvas.style.height = `${newHeight}px`;
+        canvas.setAttribute("height", newHeight * window.devicePixelRatio);
+        canvas.setAttribute("width", containerWidth * window.devicePixelRatio);
+        canvas.style.width = `${containerWidth}px`;
+
+        console.log("Canvas resized:", canvas.width, canvas.height);
+
+        // 차트 다시 그리기
+        if (forgettingCurveChart) {
+          forgettingCurveChart.resize();
+        }
+      }
+
+      // Debounce를 적용한 adjustCanvasHeight 함수
+      const debouncedAdjustCanvasHeight = debounce(adjustCanvasHeight, 250);
+
+      // 창 크기 변경 시 debounce된 함수 실행
+      window.addEventListener("resize", debouncedAdjustCanvasHeight);
     </script>
   </body>
 </html>
