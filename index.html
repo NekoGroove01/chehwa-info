@@ -163,21 +163,6 @@
     </footer>
 
     <script>
-      window.addEventListener("scroll", function () {
-        const scrollPosition =
-          window.pageYOffset || document.documentElement.scrollTop;
-        const nav = document.querySelector("nav");
-        if (scrollPosition === 0) {
-          nav.classList.remove("bg-white");
-          nav.classList.add("bg-white/[0.06]");
-          nav.classList.remove("shadow-md");
-        } else {
-          nav.classList.remove("bg-white/[0.06]");
-          nav.classList.add("bg-white");
-          nav.classList.add("shadow-md");
-        }
-      });
-
       document.addEventListener("DOMContentLoaded", function () {
         const mobileMenuButton = document.getElementById("mobile-menu-button");
         const mobileMenu = document.getElementById("mobile-menu");
@@ -284,12 +269,16 @@
             title: {
               display: true,
               text: "에빙하우스 망각 곡선과 간격 반복 학습",
+              color: "rgba(255, 255, 255, 0.8)",
               font: {
                 size: 20,
               },
             },
             legend: {
               position: "top",
+              labels: {
+                color: "rgba(255, 255, 255, 0.8)",
+              },
             },
           },
           scales: {
@@ -299,12 +288,22 @@
               title: {
                 display: true,
                 text: "시간",
+                color: "rgba(255, 255, 255, 0.8)",
+              },
+              ticks: {
+                color: "rgba(255, 255, 255, 0.8)",
               },
             },
             y: {
               title: {
                 display: true,
                 text: "기억 유지율 (%)",
+                color: "rgba(255, 255, 255, 0.8)",
+              },
+              ticks: {
+                color: "rgba(255, 255, 255, 0.8)",
+                min: 0,
+                max: 100,
               },
               min: 0,
               max: 100,
@@ -321,6 +320,10 @@
           data: chartData,
           options: chartOptions,
         });
+
+        forgettingCurveChart.defaults.backgroundColor = "#fff";
+        forgettingCurveChart.defaults.font.color = "#fff";
+        forgettingCurveChart.defaults.borderColor = "#fff";
 
         adjustCanvasHeight();
       }
