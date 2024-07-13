@@ -109,7 +109,7 @@
           </button>
         </div>
       </div>
-      <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+      <div id="mobile-menu" class="hidden md:hidden bg-white">
         <a
           href="#home"
           class="transition-all block mt-2 py-4 px-4 text-lg hover:bg-gray-200 tracking-wider"
@@ -130,7 +130,7 @@
           class="transition-all block py-4 px-4 text-lg hover:bg-gray-200 tracking-wider"
           >Contact</a
         >
-        <div class="flex justify-start px-4 py-2 space-x-2">
+        <div class="flex justify-start px-4 pb-2 space-x-2">
           <button
             hx-get="./ko.html"
             hx-target="#content"
@@ -168,13 +168,27 @@
         const nav = document.querySelector("nav");
         if (scrollPosition === 0) {
           nav.classList.remove("bg-white");
-          nav.classList.add("bg-white/[0.3]");
+          nav.classList.add("bg-white/[0.06]");
           nav.classList.remove("shadow-md");
         } else {
-          nav.classList.remove("bg-white/[0.3]");
+          nav.classList.remove("bg-white/[0.06]");
           nav.classList.add("bg-white");
           nav.classList.add("shadow-md");
         }
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const nav = document.querySelector("nav");
+
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+          if (!nav.classList.contains("shadow-md")) {
+            nav.classList.add("bg-white");
+            nav.classList.add("shadow-md");
+          }
+        });
       });
 
       let forgettingCurveChart;
