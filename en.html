@@ -1,169 +1,170 @@
 <header id="home" class="pt-48 pb-36">
-	<div class="relative max-w-screen-lg lg:max-w-screen-xl mx-auto">
-		<div class="container mx-auto flex flex-col lg:flex-row items-center">
-			<div class="lg:w-1/2 mb-4 lg:mb-0 lg:mt-8 md:mr-8">
-				<img
-					src="images/playscreen.png"
-					alt="App Preview"
-					class="max-w-full h-auto rounded-lg"
-				/>
-			</div>
-			<div class="lg:w-1/2 text-center lg:text-left space-y-16 lg:space-y-48">
-				<div
-					class="flex flex-col lg:flex-row justify-between lg:justify-start items-center space-y-16 lg:space-y-0"
-				>
-					<img
-						src="images/icon.png"
-						alt="Chehwa Icon"
-						class="h-36 w-36 mt-24 lg:mt-0"
-					/>
-					<div class="flex flex-col space-y-4 lg:ml-8">
-						<h1 class="text-3xl xl:text-5xl font-semibold">Chehwa</h1>
+  <div class="relative max-w-screen-lg lg:max-w-screen-xl mx-auto">
+    <div class="container mx-auto flex flex-col lg:flex-row items-center">
+      <div class="lg:w-1/2 mb-4 lg:mb-0 lg:mt-8 md:mr-8">
+        <img
+          src="images/playscreen.png"
+          alt="App Preview"
+          class="max-w-full h-auto rounded-lg"
+          style="max-width: 480px"
+        />
+      </div>
+      <div class="lg:w-1/2 text-center lg:text-left space-y-16 lg:space-y-48">
+        <div
+          class="flex flex-col lg:flex-row justify-between lg:justify-start items-center space-y-16 lg:space-y-0"
+        >
+          <img
+            src="images/icon.png"
+            alt="Chehwa Icon"
+            class="h-48 w-48 mt-24 lg:mt-0"
+          />
+          <div class="flex flex-col space-y-4 lg:ml-8">
+            <h1 class="text-3xl xl:text-4xl font-semibold">Chehwa</h1>
 
-						<p class="text-xl xl:text-2xl mx-4 lg:mx-0">
-							Imprint words into your memory.<br />
-							A smart vocabulary app for repetitive learning.
-						</p>
-					</div>
-				</div>
-				<div
-					class="flex flex-col lg:flex-row justify-center lg:justify-start items-center lg:items-start gap-8"
-				>
-					<!-- <a href="#"
+            <p class="text-xl xl:text-2xl font-medium mx-4 lg:mx-0">
+              Learn vocabulary lists by famous influencers.
+            </p>
+          </div>
+        </div>
+        <div
+          class="flex flex-col lg:flex-row justify-center lg:justify-start items-center lg:items-start gap-8"
+        >
+          <a
+            href="https://play.google.com/store/apps/details?id=com.chehwa.chehwa.app"
             ><img
               src="images/playstore.png"
               alt="Get it on Google Play"
-              class="h-16 md:h-24"
-          /></a> -->
-					<a href="https://apps.apple.com/kr/app/chehwa/id6695759136?l=ko-KR"
-						><img
-							src="images/appstore.png"
-							alt="Download on the App Store"
-							class="h-16 md:h-20"
-					/></a>
-				</div>
-			</div>
-		</div>
-	</div>
+              class="h-16 md:h-20"
+          /></a>
+          <a href="https://apps.apple.com/kr/app/chehwa/id6695759136?l=ko-KR"
+            ><img
+              src="images/appstore.png"
+              alt="Download on the App Store"
+              class="h-16 md:h-20"
+          /></a>
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
 
 <main>
-	<section id="about" class="py-24 lg:py-48 bg-gray-700">
-		<div
-			class="max-w-screen-lg lg:max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8"
-		>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
-				<div
-					class="flex flex-col justify-center items-center md:items-start space-y-16"
-				>
-					<h2
-						class="text-2xl md:text-3xl lg:text-4xl text-white font-semibold tracking-tighter leading-tight"
-					>
-						Scientific Repetition Algorithm
-					</h2>
-					<p class="text-base md:text-lg lg:text-xl text-gray-300 leading-10">
-						Based on Ebbinghaus's forgetting curve theory, it sets efficient
-						learning cycles and provides a curriculum grounded in various
-						learning theories.<br /><br />By following each chapter, words are
-						repeatedly learned to help retain them in memory for a long time.
-					</p>
-				</div>
-				<div
-					id="chart-container"
-					class="w-full h-96 flex justify-center items-center"
-				>
-					<canvas id="forgettingCurve" w="2000" height="1200"></canvas>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section id="features" class="py-24 lg:py-36 bg-white">
-		<div class="max-w-screen-lg lg:max-w-screen-xl mx-auto">
-			<div class="container mx-auto px-6">
-				<h2
-					class="text-3xl lg:text-5xl font-semibold text-center tracking-tighter mb-12 md:mb-24 lg:mb-32"
-				>
-					More Features
-				</h2>
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-24">
-					<div class="text-center">
-						<img
-							src="svgs/wand-magic-sparkles.svg"
-							alt="Feature 1"
-							class="h-12 w-12 mx-auto mb-6"
-						/>
-						<h3 class="text-xl font-semibold mb-2">Expert Vocabulary Lists</h3>
-						<p class="text-xl text-gray-600">
-							We offer carefully curated vocabulary lists<br />by reputable
-							English instructors and creators.
-						</p>
-					</div>
-					<div class="text-center">
-						<img
-							src="svgs/mobile-screen.svg"
-							alt="Feature 2"
-							class="h-12 w-12 mx-auto mb-6"
-						/>
-						<h3 class="text-xl font-semibold mb-2">
-							Repetitive Learning Experience
-						</h3>
-						<p class="text-xl text-gray-600">
-							All words are reviewed up to 5 times<br />for natural repetition.
-						</p>
-					</div>
-					<div class="text-center">
-						<img
-							src="svgs/person-arrow-up-from-line.svg"
-							alt="Feature 3"
-							class="h-12 w-12 mx-auto mb-6"
-						/>
-						<h3 class="text-xl font-semibold mb-2">Enhance Metacognition</h3>
-						<p class="text-xl text-gray-600">
-							Simple tests help distinguish<br />words you know for sure.
-						</p>
-					</div>
-					<div class="text-center">
-						<img
-							src="svgs/circle-arrow-down.svg"
-							alt="Feature 3"
-							class="h-12 w-12 mx-auto mb-6"
-						/>
-						<h3 class="text-xl font-semibold mb-2">
-							Learning Outcome Analysis
-						</h3>
-						<p class="text-xl text-gray-600">
-							Track your learning progress<br />and get detailed analysis.
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+  <section id="about" class="py-24 lg:py-48 bg-gray-700">
+    <div
+      class="max-w-screen-lg lg:max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8"
+    >
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
+        <div
+          class="flex flex-col justify-center items-center md:items-start space-y-16"
+        >
+          <h2
+            class="text-2xl md:text-3xl lg:text-4xl text-white font-semibold tracking-tighter leading-tight"
+          >
+            Scientific Repetition Algorithm
+          </h2>
+          <p class="text-base md:text-lg lg:text-xl text-gray-300 leading-10">
+            Based on Ebbinghaus's forgetting curve theory, it sets efficient
+            learning cycles and provides a curriculum grounded in various
+            learning theories.<br /><br />By following each chapter, words are
+            repeatedly learned to help retain them in memory for a long time.
+          </p>
+        </div>
+        <div
+          id="chart-container"
+          class="w-full h-96 flex justify-center items-center"
+        >
+          <canvas id="forgettingCurve" w="2000" height="1200"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="features" class="py-24 lg:py-36 bg-white">
+    <div class="max-w-screen-lg lg:max-w-screen-xl mx-auto">
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-3xl lg:text-5xl font-semibold text-center tracking-tighter mb-12 md:mb-24 lg:mb-32"
+        >
+          More Features
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-24">
+          <div class="text-center">
+            <img
+              src="svgs/wand-magic-sparkles.svg"
+              alt="Feature 1"
+              class="h-12 w-12 mx-auto mb-6"
+            />
+            <h3 class="text-xl font-semibold mb-2">Expert Vocabulary Lists</h3>
+            <p class="text-xl text-gray-600">
+              We offer carefully curated vocabulary lists<br />by reputable
+              English instructors and creators.
+            </p>
+          </div>
+          <div class="text-center">
+            <img
+              src="svgs/mobile-screen.svg"
+              alt="Feature 2"
+              class="h-12 w-12 mx-auto mb-6"
+            />
+            <h3 class="text-xl font-semibold mb-2">
+              Repetitive Learning Experience
+            </h3>
+            <p class="text-xl text-gray-600">
+              All words are reviewed up to 5 times<br />for natural repetition.
+            </p>
+          </div>
+          <div class="text-center">
+            <img
+              src="svgs/person-arrow-up-from-line.svg"
+              alt="Feature 3"
+              class="h-12 w-12 mx-auto mb-6"
+            />
+            <h3 class="text-xl font-semibold mb-2">Enhance Metacognition</h3>
+            <p class="text-xl text-gray-600">
+              Simple tests help distinguish<br />words you know for sure.
+            </p>
+          </div>
+          <div class="text-center">
+            <img
+              src="svgs/circle-arrow-down.svg"
+              alt="Feature 3"
+              class="h-12 w-12 mx-auto mb-6"
+            />
+            <h3 class="text-xl font-semibold mb-2">
+              Learning Outcome Analysis
+            </h3>
+            <p class="text-xl text-gray-600">
+              Track your learning progress<br />and get detailed analysis.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <section id="contact" class="py-24 lg:py-36 bg-gray-100">
-	<div class="max-w-screen-lg lg:max-w-screen-xl mx-auto">
-		<div class="container mx-auto px-6 text-center">
-			<h2 class="text-3xl md:text-5xl font-semibold tracking-tighter mb-8">
-				Contact
-			</h2>
-			<p class="text-xl md:text-2xl mb-24">
-				Please send your inquiries to the email below and we will get back to
-				you as soon as possible.
-			</p>
-			<a
-				href="mailto:chehwa62@gmail.com"
-				class="inline-block px-6 py-12 md:px-36 md:py-18 lg:px-72 lg:py-36 boder-none border-soild md:border-2 border-gray-300"
-			>
-				<img
-					src="svgs/envelope.svg"
-					alt="Email"
-					class="h-24 w-24 mx-auto mb-4"
-				/>
-				<span class="text-lg md:text-2xl text-blue-600 hover:underline"
-					>chehwa62@gmail.com</span
-				>
-			</a>
-		</div>
-	</div>
+  <div class="max-w-screen-lg lg:max-w-screen-xl mx-auto">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-5xl font-semibold tracking-tighter mb-8">
+        Contact
+      </h2>
+      <p class="text-xl md:text-2xl mb-24">
+        Please send your inquiries to the email below and we will get back to
+        you as soon as possible.
+      </p>
+      <a
+        href="mailto:chehwa62@gmail.com"
+        class="inline-block px-6 py-12 md:px-36 md:py-18 lg:px-72 lg:py-36 boder-none border-soild md:border-2 border-gray-300"
+      >
+        <img
+          src="svgs/envelope.svg"
+          alt="Email"
+          class="h-24 w-24 mx-auto mb-4"
+        />
+        <span class="text-lg md:text-2xl text-blue-600 hover:underline"
+          >chehwa62@gmail.com</span
+        >
+      </a>
+    </div>
+  </div>
 </section>
